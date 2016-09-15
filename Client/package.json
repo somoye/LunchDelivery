@@ -19,5 +19,8 @@
   "homepage": "https://github.com/somoye/LunchDelivery#readme",
   "devDependencies": {
     "lite-server": "^2.2.2"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7"
   }
 }
