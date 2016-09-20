@@ -1,0 +1,25 @@
+{
+  "name": "lunch-delivery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "startServer": "cd server && npm start",
+    "startClient": "cd client && npm start",
+    "start": "concurrently -- 'npm run startServer' 'npm run startClient'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/somoye/LunchDelivery.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/somoye/LunchDelivery/issues"
+  },
+  "homepage": "https://github.com/somoye/LunchDelivery#readme",
+  "devDependencies": {
+    "concurrently": "^2.2.0"
+  }
+}
