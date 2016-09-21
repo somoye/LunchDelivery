@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "cd server && npm install && cd ../client && npm install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "startServer": "cd server && npm start",
     "startClient": "cd client && npm start",
-    "start": "concurrently -- 'npm run startServer' 'npm run startClient'"
+    "start": "concurrently --kill-others --raw \"npm run startServer\" \"npm run startClient\""
   },
   "repository": {
     "type": "git",
