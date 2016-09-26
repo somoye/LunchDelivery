@@ -1,26 +1,26 @@
 {
-  "name": "lunch-delivery",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "lite-server",
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/somoye/LunchDelivery.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/somoye/LunchDelivery/issues"
-  },
-  "homepage": "https://github.com/somoye/LunchDelivery#readme",
-  "devDependencies": {
-    "lite-server": "^2.2.2"
-  },
-  "dependencies": {
-    "bootstrap": "^3.3.7"
-  }
+    "name": "lunch-delivery",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "lite-server",
+        "test": "test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/somoye/LunchDelivery.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/somoye/LunchDelivery/issues"
+    },
+    "homepage": "https://github.com/somoye/LunchDelivery#readme",
+    "devDependencies": {
+        "lite-server": "^2.2.2"
+    },
+    "dependencies": {
+        "bootstrap": "^3.3.7"
+    }
 }
