@@ -17,6 +17,9 @@
     <link href="style.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="js/script.js"></script>
 
 </head>
 
@@ -89,34 +92,28 @@
                             <h3>СУПЫ</h3>
                         </div>
                         <ul class="list-menu-content">
-                            <li class="list-product list-product-active">
-                                <h3 class="list-product-title">
-                                    <span class="dish"></span>
-                                    <span class="dotted"></span>
-                                </h3>
+                            <!--  <li class="list-product list-product-active">
+                                <div class="list-product-title">
+
+                                </div>
                                 <div class="list-product-desc">
-                                    <p class="description"></p>
+
                                 </div>
                                 <div class="list-product-price">
-                                    <ul>
-                                        <li><span class="price"></span></li>
-                                    </ul>
+
                                 </div>
                                 <div class="clear"></div>
                                 <span class="order-product">заказать</span>
                             </li>
                             <li class="list-product list-product-active">
-                                <h3 class="list-product-title">
-                                    <span class="dish"></span>
-                                    <span class="dotted"></span>
-                                </h3>
+                                <div class="list-product-title">
+
+                                </div>
                                 <div class="list-product-desc">
-                                    <p class="description"></p>
+
                                 </div>
                                 <div class="list-product-price">
-                                    <ul>
-                                        <li><span class="price"></span></li>
-                                    </ul>
+
                                 </div>
                                 <div class="clear"></div>
                                 <span class="order-product">заказать</span>
@@ -168,7 +165,7 @@
                                 </div>
                                 <div class="clear"></div>
                                 <span class="order-product">заказать</span>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                     <div class="panel-grid-cell">
@@ -238,28 +235,11 @@
         </footer>
     </div>
     <!-- /.container -->
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
         window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
-        $.ajax({
-            url: "http://localhost:3001/menu",
-            success: function (response) {
-                for (var i = 0; i < response.data.length; i++) {
-                    console.log(response.data[i].name);
-                    $(".dish").eq(i).html(response.data[i].name);
-                    $(".description").eq(i).html(response.data[i].description);
-                    $(".price").eq(i).html(response.data[i].price);
-
-                }
-            }
-        });
     </script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
