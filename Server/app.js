@@ -24,28 +24,13 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors({
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
+}));
 
 app.use('/', routes);
 app.use('/users', users);
-app.get('/menu', cors({
-    origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
-}), function (req, res, next) {
-    res.json({
-        data: [
-            {
-                name: "ФО БО",
-                description: "Ароматный бульон с рисовой лапшой и мясом 555г",
-                price: "60.00"
-            },
-            {
-                name: "Окрошка с RoasBeef",
-                description: "400г",
-                price: "48.00"
-            }
-  ]
-    });
-});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
