@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/somoye/LunchDelivery#readme",
   "devDependencies": {
-    "concurrently": "^2.2.0"
+    "concurrently": "^2.2.0",
+    "connect-history-api-fallback": "^1.3.0"
   }
 }
