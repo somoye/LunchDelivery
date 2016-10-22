@@ -4,7 +4,7 @@ module.exports = {
             categories: [
                 {
                     name: "soup",
-                    image: "img/bg-food.jpg",
+                    image: "\img\bg-food.jpg",
                     menu: [
                         {
                             name: "Английский крем-суп",
@@ -30,7 +30,7 @@ module.exports = {
 
                 }, {
                     name: "burger",
-                    image: "img/bg-food2.jpg",
+                    image: "\img\bg-food.jpg",
                     menu: [
                         {
                             name: "Burger с фалафелем и харриса",
@@ -49,8 +49,8 @@ module.exports = {
                         }
                     ]
                 }, {
-                    name: "салат меню",
-                    image: "img/bg-food.jpg",
+                    name: "salad",
+                    image: "\img\bg-food.jpg",
                     menu: [
                         {
                             name: "Салат «Греческий»",

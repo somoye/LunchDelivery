@@ -90,7 +90,6 @@ body {
 }
 
 .list-menu {
-    background-image: url(img/bg-food.jpg);
     color: #fff;
     text-align: center;
     padding: 30px;
@@ -178,4 +177,12 @@ body {
     padding: 0 10px;
     font-size: 13px;
     font-weight: 700;
+}
+
+.logout {
+    margin-top: 8px
+}
+
+.local-info {
+    margin-top: 10px;
 }
