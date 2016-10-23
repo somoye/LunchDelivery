@@ -1,3 +1,6 @@
 node_modules
 tmp
 *.log
+/Server/*.sqlite
+/Server/sequelize-data.json
+/Server/sequelize-meta.json
