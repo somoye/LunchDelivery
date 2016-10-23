@@ -8,7 +8,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/menu', function (req, res, next) {
-    res.json(menuProvider.get());
+    menuProvider.get()
+			.then(result => res.json(result))
+			.catch(next);
 });
 
 module.exports = router;
