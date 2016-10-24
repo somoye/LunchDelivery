@@ -1,27 +1,28 @@
 {
-	"name": "lunch-delivery-server",
-	"version": "0.0.0",
-	"private": true,
-	"scripts": {
-		"migrate": "rm sequelize-meta.json && sequelize db:migrate",
-		"seed": "npm run migrate && rm sequelize-data.json && sequelize db:seed:all",
-		"postinstall": "npm run seed",
-		"start": "nodemon ./bin/www --ignore migrations/ --ignore seeders/"
-	},
-	"dependencies": {
-		"body-parser": "~1.15.1",
-		"cookie-parser": "~1.4.3",
-		"cors": "^2.8.1",
-		"debug": "~2.2.0",
-		"express": "~4.13.4",
-		"jade": "~1.11.0",
-		"morgan": "~1.7.0",
-		"sequelize": "^3.24.3",
-		"sequelize-cli": "^2.4.0",
-		"serve-favicon": "~2.3.0",
-		"sqlite3": "^3.1.6"
-	},
-	"devDependencies": {
-		"nodemon": "^1.11.0"
-	}
+  "name": "lunch-delivery-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "migrate": "del sequelize-meta.json && sequelize db:migrate",
+    "seed": "npm run migrate && del sequelize-data.json && sequelize db:seed:all",
+    "postinstall": "npm run seed",
+    "start": "nodemon ./bin/www --ignore migrations/ --ignore seeders/"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.1",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.1",
+    "debug": "~2.2.0",
+    "express": "~4.13.4",
+    "jade": "~1.11.0",
+    "morgan": "~1.7.0",
+    "sequelize": "^3.24.3",
+    "sequelize-cli": "^2.4.0",
+    "serve-favicon": "~2.3.0",
+    "sqlite3": "^3.1.6"
+  },
+  "devDependencies": {
+    "del-cli": "^0.2.0",
+    "nodemon": "^1.11.0"
+  }
 }
