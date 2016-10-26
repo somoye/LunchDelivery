@@ -3,7 +3,7 @@ var router = express.Router();
 //const userProvider = require('../services/user.provider');
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.post('/', function (req, res, next) {
 	if(req.body.email && req.body.email.indexOf('@') > -1)
 		res.sendStatus(200);
 	else
