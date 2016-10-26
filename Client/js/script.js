@@ -24,6 +24,8 @@ $.ajax({
 
 
         $.each(response.categories, function (i) {
+            console.log(response);
+
 
             var panelGridCell = $('<div class="panel-grid-cell">').html(
                 '<div class="list-menu">' +
@@ -36,16 +38,16 @@ $.ajax({
 
             var list = panelGridCell.find('ul');
 
-            $.each(response.categories[i].menu, function (j) {
+            $.each(response.categories[i].dishes, function (j) {
 
                 var currentItem = $('<li class="list-product list-product-active"/>')
-                    .html('<div class="list-product-title">' + '<span class="dish">' + response.categories[i].menu[j].name + '</span>' + '<span class="dotted"></span>' + '</div>' +
-                        '<div class="list-product-desc">' + '<p class="description">' + response.categories[i].menu[j].description + '</p>' + '</div>' +
-                        '<div class="list-product-price">' + '<span class="price">' + response.categories[i].menu[j].price + '</span>' + '</div>' +
+                    .html('<div class="list-product-title">' + '<span class="dish">' + response.categories[i].dishes[j].name + '</span>' + '<span class="dotted"></span>' + '</div>' +
+                        '<div class="list-product-desc">' + '<p class="description">' + response.categories[i].dishes[j].description + '</p>' + '</div>' +
+                        '<div class="list-product-price">' + '<span class="price">' + response.categories[i].dishes[j].price + '</span>' + '</div>' +
                         '<div class="clear" />' +
                         '<span class="order-product">заказать</span>').appendTo(list);
 
-                var itemName = response.categories[i].menu[j].name;
+                var itemName = response.categories[i].dishes[j].name;
                 var currentButton = currentItem.find(".order-product");
                 currentButton.click(function () {
 
