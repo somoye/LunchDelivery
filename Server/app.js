@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
+var auth = require('./routes/auth.route');
 var users = require('./routes/users');
 
 var app = express();
@@ -29,6 +30,7 @@ app.use(cors({
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
 }));
 
+app.use('/auth', auth);
 app.use('/', routes);
 app.use('/users', users);
 

@@ -1,18 +1,18 @@
+'use strict';
 module.exports = function (sequelize, DataTypes) {
-	const model = sequelize.define('Dish', {
+	var User = sequelize.define('User', {
 		name: DataTypes.STRING,
-		description: DataTypes.TEXT,
-		price: DataTypes.FLOAT
-	},{
+		lastName: DataTypes.STRING,
+		email: DataTypes.STRING
+	}, {
 		freezeTableName: true,
 		classMethods: {
 			associate: function (db) {
-				db.Dish.hasMany(db.Order, {
+				db.User.hasMany(db.Order, {
 					as: 'orders'
 				});
 			}
 		}
 	});
-
-	return model;
+	return User;
 };
