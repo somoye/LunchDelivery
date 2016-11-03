@@ -36,5 +36,5 @@ module.exports = function (app) {
 	}));
 	app.use(passport.initialize());
 	app.use(passport.session());
-	app.get('/auth', passport.authenticate('local'), function (req, res) { res.sendStatus(200);});
+	app.post('/auth', passport.authenticate('local'), function (req, res) { res.sendStatus(200);});
 }
