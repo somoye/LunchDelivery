@@ -5,9 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
+var routes = require('./routes/index.route');
 var auth = require('./routes/auth.route');
-var users = require('./routes/users');
+var user = require('./routes/user.route');
+var order = require('./routes/order.route');
 
 var app = express();
 var cors = require('cors');
@@ -21,24 +22,36 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: false
+	extended: false
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
-    origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
+	origin: 'http://localhost:3000',
+	optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
 }));
 
-app.use('/auth', auth);
+auth(app);
+
 app.use('/', routes);
-app.use('/users', users);
+app.use(function (req, res, next) {
+	if (req.user)
+		next();
+	else {
+		var err = new Error('Unauthorized');
+		err.status = 401;
+		next(err);
+	}
+});
+
+app.use('/user', user);
+app.use('/order', order);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+	var err = new Error('Not Found');
+	err.status = 404;
+	next(err);
 });
 
 // error handlers
@@ -46,23 +59,23 @@ app.use(function (req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function (err, req, res, next) {
-        res.status(err.status || 500);
-        res.json({
-            message: err.message,
-            error: err.stack
-        });
-    });
+	app.use(function (err, req, res, next) {
+		res.status(err.status || 500);
+		res.json({
+			message: err.message,
+			error: err.stack
+		});
+	});
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.json({
-        message: err.message,
-        error: {}
-    });
+	res.status(err.status || 500);
+	res.json({
+		message: err.message,
+		error: {}
+	});
 });
 
 
