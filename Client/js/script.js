@@ -1,62 +1,87 @@
 "use strict"
 
-function orderItemClickHandler(item_name) {
+function makeAjaxReq(path, method, data, success, error) {
     $.ajax({
-        type: "POST",
-        url: "http://localhost:3001/order/",
-        data: JSON.stringify({
-            menuItemId: item_name
-        }),
+        url: "http://localhost:3001/" + path,
+        type: method,
+        data: data,
         dataType: "json",
         contentType: "application/json; charset=utf-8",
-
+        success: function showGreenMark(response) {
+            console.log("good");
+            success && success(response);
+        },
+        error: function showRedMark(xhr, status, error) {
+            alert("bad");
+            error && error();
+        }
     });
+};
 
-}
+function makeGetReq(path, data, success, error) {
+    makeAjaxReq(path, "GET", data, success, error);
+};
+
+function makePostReq(path, data, success, error) {
+    var dataToString = JSON.stringify(data);
+    makeAjaxReq(path, "POST", dataToString, success, error);
+
+};
+
+function orderItemClickHandler(item_name, currentButton) {
+    makePostReq("order/", {
+        menuItemId: item_name
+    }, function () {
+        currentButton.html('юху');
+    }, function () {
+        currentButton.html('юхуee');
+    });
+};
 
 
 
 var panelGrid = $('.active-menu');
 
-$.ajax({
-    url: "http://localhost:3001/menu",
-    success: function (response) {
+
+makeGetReq("menu", {}, function (response) {
 
 
-        $.each(response.categories, function (i) {
-            console.log(response);
+    $.each(response.categories, function (i) {
+        console.log(response);
 
 
-            var panelGridCell = $('<div class="panel-grid-cell">').html(
-                '<div class="list-menu">' +
-                '<h3>' + response.categories[i].name + '</h3>' + '</div>' +
-                ' <ul class="list-menu-content "/>')
+        var panelGridCell = $('<div class="panel-grid-cell">').html(
+            '<div class="list-menu">' +
+            '<h3>' + response.categories[i].name + '</h3>' + '</div>' +
+            ' <ul class="list-menu-content "/>')
 
-            .appendTo(panelGrid);
+        .appendTo(panelGrid);
 
-            panelGridCell.find('.list-menu').css("background-image", "url(" + response.categories[i].image + ")");
+        panelGridCell.find('.list-menu').css("background-image", "url(" + response.categories[i].image + ")");
 
-            var list = panelGridCell.find('ul');
+        var list = panelGridCell.find('ul');
 
-            $.each(response.categories[i].dishes, function (j) {
+        $.each(response.categories[i].dishes, function (j) {
 
-                var currentItem = $('<li class="list-product list-product-active"/>')
-                    .html('<div class="list-product-title">' + '<span class="dish">' + response.categories[i].dishes[j].name + '</span>' + '<span class="dotted"></span>' + '</div>' +
-                        '<div class="list-product-desc">' + '<p class="description">' + response.categories[i].dishes[j].description + '</p>' + '</div>' +
-                        '<div class="list-product-price">' + '<span class="price">' + response.categories[i].dishes[j].price + '</span>' + '</div>' +
-                        '<div class="clear" />' +
-                        '<span class="order-product">заказать</span>').appendTo(list);
+            var currentItem = $('<li class="list-product list-product-active"/>')
+                .html('<div class="list-product-title">' + '<span class="dish">' + response.categories[i].dishes[j].name + '</span>' + '<span class="dotted"></span>' + '</div>' +
+                    '<div class="list-product-desc">' + '<p class="description">' + response.categories[i].dishes[j].description + '</p>' + '</div>' +
+                    '<div class="list-product-price">' + '<span class="price">' + response.categories[i].dishes[j].price + '</span>' + '</div>' +
+                    '<div class="clear" />' +
+                    '<span class="order-product">заказать</span>').appendTo(list);
 
-                var itemName = response.categories[i].dishes[j].name;
-                var currentButton = currentItem.find(".order-product");
-                currentButton.click(function () {
+            var itemName = response.categories[i].dishes[j].name;
+            var currentButton = currentItem.find(".order-product");
+            currentButton.click(function () {
 
-                    orderItemClickHandler(itemName)
-                });
+                currentButton.html('<div class="loader"></div>');
+                orderItemClickHandler(itemName, currentButton);
+
 
             });
+
         });
+    });
 
 
-    }
-});
+})

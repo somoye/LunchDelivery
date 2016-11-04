@@ -11,16 +11,22 @@ $(".signin").click(function () {
     $(".user-profile").show();
     $(".local-info").show();
 
-    console.log()
+
     $(".id").text(email);
     $("#password").html(password);
 
-    $.ajax({
-        url: "http://localhost:3001/auth",
-        method: "POST",
-        data: {
-            email: email,
-            pwd: password
-        };
-    })
+    makePostReq("auth/", {
+        email: email,
+        pwd: password
+    }, function (data) {
+        alert("Data Loaded: " + data)
+    }, function () {
+        alert("Fatal error")
+    });
+
 });
+
+makeGetReq("user/", {}, function (response) {
+    alert(response.name)
+        /*hide login form*/
+})
