@@ -36,7 +36,7 @@ auth(app);
 
 app.use('/', routes);
 app.use(function (req, res, next) {
-	if (req.user)
+	if (req.isAuthenticated())
 		next();
 	else {
 		var err = new Error('Unauthorized');

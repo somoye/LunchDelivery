@@ -7,9 +7,6 @@ module.exports = function (sequelize, DataTypes) {
 		freezeTableName: true,
 		classMethods: {
 			associate: function (db) {
-				db.Dish.hasMany(db.Order, {
-					as: 'orders'
-				});
 			}
 		}
 	});

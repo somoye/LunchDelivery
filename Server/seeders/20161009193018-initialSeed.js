@@ -12,7 +12,18 @@ module.exports = {
 			.then(() => Promise.all(
 				require('./seeds/user.seed.js')
 				.users.map(user => db.User.create(user))))
-			.then(() => db.Order.create({date: Date.now(), UserId: 1, DishId: 1}));
+			.then(() => db.Order.create({
+				date: new Date().setUTCHours(0, 0, 0, 0),
+				UserId: 1,
+				dishId: 1,
+				amount: 1
+			}))
+			.then(() => db.Order.create({
+				date: new Date().setUTCHours(0, 0, 0, 0),
+				UserId: 1,
+				dishId: 2,
+				amount: 2
+			}));
 		//			.catch(err => console.log('catch', err.toString()) || err)
 		//			.then(() => {
 		//				throw {

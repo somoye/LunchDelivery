@@ -6,7 +6,7 @@
     "migrate": "del sequelize-meta.json && sequelize db:migrate",
     "seed": "npm run migrate && del sequelize-data.json && sequelize db:seed:all",
     "postinstall": "npm run seed",
-    "start": "nodemon ./bin/www --ignore migrations/ --ignore seeders/"
+    "start": "nodemon ./bin/www --ignore migrations/ --ignore seeders/ --ignore sequelize*.json"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
