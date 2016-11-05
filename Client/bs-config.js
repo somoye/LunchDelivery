@@ -7,5 +7,8 @@ module.exports = {
                 verbose: true
             })
         }
-    }
+    },
+	  "ui": {
+			"port": 3002
+  	}
 };
