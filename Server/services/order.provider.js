@@ -2,11 +2,14 @@ const db = require('../models/db');
 
 module.exports = {
 	get: function (userId) {
+		let whereClause = {
+				date: new Date(new Date().setHours(0, 0, 0, 0))
+			};
+		if(userId)
+			whereClause.UserId =  userId;
+
 		return db.Order.findAll({
-			where: {
-				UserId: userId,
-				date: new Date().setUTCHours(0, 0, 0, 0)
-			},
+			where: whereClause,
 			include: [{
 				all: true // model: db.Dish, as: 'dish'
 				}]
@@ -17,11 +20,12 @@ module.exports = {
 				where: {
 					UserId: userId,
 					dishId: dishId,
-					date: new Date().setUTCHours(0, 0, 0, 0)
+					date: new Date(new Date().setHours(0, 0, 0, 0))
 				},
 				defaults: {
 					UserId: userId,
 					dishId: dishId,
+					date: new Date(new Date().setHours(0, 0, 0, 0)),
 					amount: 1
 				}
 			})

@@ -13,13 +13,13 @@ module.exports = {
 				require('./seeds/user.seed.js')
 				.users.map(user => db.User.create(user))))
 			.then(() => db.Order.create({
-				date: new Date().setUTCHours(0, 0, 0, 0),
+				date: new Date(new Date().setHours(0, 0, 0, 0)),
 				UserId: 1,
 				dishId: 1,
 				amount: 1
 			}))
 			.then(() => db.Order.create({
-				date: new Date().setUTCHours(0, 0, 0, 0),
+				date: new Date(new Date().setHours(0, 0, 0, 0)),
 				UserId: 1,
 				dishId: 2,
 				amount: 2
