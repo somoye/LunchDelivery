@@ -9,7 +9,9 @@ module.exports = function (sequelize, DataTypes) {
 		classMethods: {
 			associate: function (db) {
 				db.User.hasMany(db.Order, {
-					as: 'orders'
+					as: 'orders',
+					foreignKey: { allowNull: false },
+					onDelete: 'CASCADE'
 				});
 			}
 		}
