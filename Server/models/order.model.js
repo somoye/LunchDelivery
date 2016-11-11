@@ -14,7 +14,9 @@ module.exports = function (sequelize, DataTypes) {
 		classMethods: {
 			associate: (db) => {
 				db.Order.belongsTo(db.Dish, {
-					as: 'dish'
+					as: 'dish',
+					foreignKey: { allowNull: false },
+					onDelete: 'CASCADE'
 				});
 			}
 		}
