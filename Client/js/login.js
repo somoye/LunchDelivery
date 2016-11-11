@@ -16,17 +16,42 @@ $(".signin").click(function () {
     $("#password").html(password);
 
     makePostReq("auth/", {
-        email: email,
-        pwd: password
+        username: email,
+        password: password
     }, function (data) {
-        alert("Data Loaded: " + data)
+        console.log("Data Loaded: " + data)
     }, function () {
-        alert("Fatal error")
+        console.log("Fatal error")
     });
 
 });
 
-makeGetReq("user/", {}, function (response) {
-    alert(response.name)
+$(".logout").click(function () {
+
+
+    $(".login").show();
+    $(".user-profile").hide();
+    $(".local-info").hide();
+
+    makeGetReq("logout/", {}, function (data) {
+        console.log("Log out")
+    });
+
+});
+
+makeGetReq("users/me", {}, function (response) {
+    console.log(response.name)
         /*hide login form*/
+    $(".login").hide();
+    $(".user-profile").show();
+    $(".local-info").show();
+
+});
+
+makeGetReq("users/me/orders", {}, function (response) {
+    $.each(response, function (i) {
+        console.log(response[i].dishId);
+    });
+
+
 })
