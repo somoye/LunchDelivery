@@ -9,6 +9,8 @@ var routes = require('./routes/index.route');
 var auth = require('./routes/auth.route');
 var users = require('./routes/users.route');
 var orders = require('./routes/orders.route');
+var categories = require('./routes/categories.route');
+var menu = require('./routes/menu.route');
 
 var app = express();
 var cors = require('cors');
@@ -35,6 +37,8 @@ app.use(cors({
 auth(app);
 
 app.use('/', routes);
+app.use('/', menu);
+app.use('/categories', categories);
 app.use(function (req, res, next) {
 	if (req.isAuthenticated())
 		next();

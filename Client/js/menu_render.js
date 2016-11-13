@@ -25,7 +25,7 @@ makeGetReq("menu", {}, function (response) {
 
         .appendTo(panelGrid);
 
-        panelGridCell.find('.list-menu').css("background-image", "url(" + response.categories[i].image + ")");
+        panelGridCell.find('.list-menu').css("background-image", "url(" + response.categories[i].imageUrl + ")");
 
         var list = panelGridCell.find('ul');
 
