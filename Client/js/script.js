@@ -15,7 +15,7 @@ function makeAjaxReq(path, method, data, success, error) {
             success && success(response);
         },
         error: function showRedMark(xhr, status, err) {
-            console.log("Error" + err);
+            console.log("Error " + err);
             error && error();
         }
     });
