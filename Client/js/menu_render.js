@@ -52,4 +52,4 @@ makeGetReq("menu", {}, function (response) {
     });
 
 
-})
+});

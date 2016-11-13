@@ -211,3 +211,10 @@ body {
         transform: rotate(360deg);
     }
 }
+
+.err-panel {
+    display: block;
+    padding: 13px 15px;
+    float: left;
+    color: red;
+}

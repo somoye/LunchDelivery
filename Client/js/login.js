@@ -24,7 +24,9 @@ $(".signin").click(function () {
         $(".login").hide();
         $(".user-profile").show();
     }, function () {
-        alert("Your email or password is wrong")
+
+        $(".err-panel").html("Your email or password is wrong");
+
     });
 
 });
