@@ -179,6 +179,11 @@ body {
     font-weight: 700;
 }
 
+.login,
+.user-profile {
+    display: none;
+}
+
 .logout {
     margin-top: 8px
 }
@@ -195,7 +200,7 @@ body {
     height: 20px;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
-/*    display: none;*/
+    /*    display: none;*/
 }
 
 @keyframes spin {
