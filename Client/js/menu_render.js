@@ -2,7 +2,7 @@ function orderItemClickHandler(item_name, currentButton) {
     makePostReq("users/me/orders", {
         dishId: item_name
     }, function () {
-        currentButton.html('юху');
+        currentButton.html('Ordered');
     }, function () {
         alert('Please log in');
     });
@@ -36,7 +36,7 @@ makeGetReq("menu", {}, function (response) {
                     '<div class="list-product-desc">' + '<p class="description">' + response.categories[i].dishes[j].description + '</p>' + '</div>' +
                     '<div class="list-product-price">' + '<span class="price">' + response.categories[i].dishes[j].price + '</span>' + '</div>' +
                     '<div class="clear" />' +
-                    '<span class="order-product">заказать</span>').appendTo(list);
+                    '<span class="order-product">make order</span>').appendTo(list);
 
             var itemName = response.categories[i].dishes[j].id;
             var currentButton = currentItem.find(".order-product");
@@ -50,6 +50,14 @@ makeGetReq("menu", {}, function (response) {
 
         });
     });
-
-
 });
+
+makeGetReq("users/me/orders", {}, function (response) {
+    $.each(response, function (i) {
+        var orderedDish = response[i].dishId;
+        console.log(orderedDish);
+        $("#" + orderedDish + " .order-product").html("Okey:" + response[i].amount);
+
+    });
+
+})
