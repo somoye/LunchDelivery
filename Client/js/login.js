@@ -47,11 +47,3 @@ makeGetReq("users/me", {}, function (response) {
     $(".local-info").show();
 
 });
-
-makeGetReq("users/me/orders", {}, function (response) {
-    $.each(response, function (i) {
-        console.log(response[i].dishId);
-    });
-
-
-})

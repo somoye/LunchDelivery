@@ -65,6 +65,8 @@ makeGetReq("menu", {}, function (response) {
         var list = panelGridCell.find('ul');
 
         $.each(response.categories[i].dishes, function (j) {
+            var itemId = response.categories[i].dishes[j].id;
+
 
             var currentItem = $('<li class="list-product list-product-active"/>')
                 .html('<div class="list-product-title">' + '<span class="dish">' + response.categories[i].dishes[j].name + '</span>' + '<span class="dotted"></span>' + '</div>' +
@@ -73,18 +75,27 @@ makeGetReq("menu", {}, function (response) {
                     '<div class="clear" />' +
                     '<span class="order-product">заказать</span>').appendTo(list);
 
-            var itemName = response.categories[i].dishes[j].id;
+            currentItem.attr("id", itemId);
+
+
             var currentButton = currentItem.find(".order-product");
             currentButton.click(function () {
 
                 // currentButton.html('<div class="loader"></div>');
-                orderItemClickHandler(itemName, currentButton);
+                orderItemClickHandler(itemId, currentButton);
 
 
             });
 
         });
     });
+})
+makeGetReq("users/me/orders", {}, function (response) {
+    $.each(response, function (i) {
+        var orderedDish = response[i].dishId;
+        console.log(orderedDish);
+        $("#" + orderedDish + " .order-product").html("Okey:" + response[i].amount);
 
+    });
 
 })
