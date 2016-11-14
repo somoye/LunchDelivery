@@ -1,37 +1,39 @@
 "use strict"
+makeGetReq("users/me", {}, function (response) {
+    console.log(response.name)
+        /*hide login form*/
 
-$(".user-profile").hide();
-$(".local-info").hide();
+    $(".user-profile").show();
+    $(".login").hide();
+
+}, function () {
+    $(".login").show();
+});
+
+
 
 $(".signin").click(function () {
     var email = $("#user_email").val();
     var password = $("#user_pwd").val();
-
-    $(".login").hide();
-    $(".user-profile").show();
-    $(".local-info").show();
-
-
-    $(".id").text(email);
-    $("#password").html(password);
 
     makePostReq("auth/", {
         username: email,
         password: password
     }, function (data) {
         console.log("Data Loaded: " + data)
+        $(".login").hide();
+        $(".user-profile").show();
     }, function () {
-        console.log("Fatal error")
+
+        $(".err-panel").html("Your email or password is wrong");
+
     });
 
 });
 
 $(".logout").click(function () {
-
-
     $(".login").show();
     $(".user-profile").hide();
-    $(".local-info").hide();
 
     makeGetReq("logout/", {}, function (data) {
         console.log("Log out")
@@ -39,11 +41,10 @@ $(".logout").click(function () {
 
 });
 
-makeGetReq("users/me", {}, function (response) {
-    console.log(response.name)
-        /*hide login form*/
-    $(".login").hide();
-    $(".user-profile").show();
-    $(".local-info").show();
+makeGetReq("users/me/orders", {}, function (response) {
+    $.each(response, function (i) {
+        console.log(response[i].dishId);
+    });
 
-});
+
+})

@@ -4,7 +4,6 @@ var router = express.Router();
 router.param('userId',
 	function (req, res, next) {
 		req.params.userId = req.params.userId == 'me' ? req.user.id : req.params.userId;
-		console.log(req.params.userId);
 		next();
 	});
 

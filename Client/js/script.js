@@ -15,7 +15,26 @@ function makeAjaxReq(path, method, data, success, error) {
             success && success(response);
         },
         error: function showRedMark(xhr, status, err) {
-            console.log("Error" + err);
+
+
+            console.log("Error " + xhr.responseText);
+            var message;
+            var statusErrorMap = {
+                '400': "Bad request: ",
+                '401': "Unauthorized access",
+                '403': "Unauthorized access",
+                '404': "Not Found: ",
+                '500': "Server error: "
+            };
+            if (xhr.status) {
+                message = statusErrorMap[xhr.status];
+                if (!message) {
+                    message = "Unknown Error " + err;
+                }
+            } else {
+                message = "Unknown Error " + err;
+            }
+            $(".err-panel").html(message);
             error && error();
         }
     });
@@ -35,7 +54,7 @@ function orderItemClickHandler(item_name, currentButton) {
     makePostReq("users/me/orders", {
         dishId: item_name
     }, function () {
-        currentButton.html('юху');
+        currentButton.html('???');
     }, function () {
         alert('Please log in');
     });
@@ -73,7 +92,7 @@ makeGetReq("menu", {}, function (response) {
                     '<div class="list-product-desc">' + '<p class="description">' + response.categories[i].dishes[j].description + '</p>' + '</div>' +
                     '<div class="list-product-price">' + '<span class="price">' + response.categories[i].dishes[j].price + '</span>' + '</div>' +
                     '<div class="clear" />' +
-                    '<span class="order-product">заказать</span>').appendTo(list);
+                    '<span class="order-product">????????</span>').appendTo(list);
 
             currentItem.attr("id", itemId);
 
