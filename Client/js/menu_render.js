@@ -1,8 +1,10 @@
-function orderItemClickHandler(item_name, currentButton) {
+function orderItemClickHandler(dishID, currentButton) {
     makePostReq("users/me/orders", {
-        dishId: item_name
+        dishId: dishID
     }, function () {
-        currentButton.html('Ordered');
+        var totalAmont = +currentButton.attr("total-amount") + 1;
+        currentButton.html('Ordered: ' + totalAmont);
+        currentButton.attr("total-amount", totalAmont);
     }, function () {
         alert('Please log in');
     });
@@ -38,15 +40,16 @@ makeGetReq("menu", {}, function (response) {
                     '<div class="clear" />' +
                     '<span class="order-product">make order</span>').appendTo(list);
 
-            var itemName = response.categories[i].dishes[j].id;
+            var dishID = response.categories[i].dishes[j].id;
             var currentButton = currentItem.find(".order-product");
             currentButton.click(function () {
 
                 // currentButton.html('<div class="loader"></div>');
-                orderItemClickHandler(itemName, currentButton);
+                orderItemClickHandler(dishID, currentButton);
 
 
             });
+            currentItem.attr("id", dishID);
 
         });
     });
@@ -55,9 +58,9 @@ makeGetReq("menu", {}, function (response) {
 makeGetReq("users/me/orders", {}, function (response) {
     $.each(response, function (i) {
         var orderedDish = response[i].dishId;
-        console.log(orderedDish);
-        $("#" + orderedDish + " .order-product").html("Okey:" + response[i].amount);
-
+        console.log("ID" + response[i].amount);
+        $("#" + orderedDish + " .order-product").html("Ordered:" + response[i].amount);
+        $("#" + orderedDish + " .order-product").attr("total-amount", response[i].amount);
     });
 
 })
