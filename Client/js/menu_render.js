@@ -3,6 +3,7 @@ function orderItemClickHandler(dishID, currentButton) {
         dishId: dishID
     }, function () {
         var totalAmont = +currentButton.attr("total-amount") + 1;
+        console.log(totalAmont);
         currentButton.html('Ordered: ' + totalAmont);
         currentButton.attr("total-amount", totalAmont);
     }, function () {
@@ -17,9 +18,6 @@ makeGetReq("menu", {}, function (response) {
 
 
     $.each(response.categories, function (i) {
-        console.log(response);
-
-
         var panelGridCell = $('<div class="panel-grid-cell">').html(
             '<div class="list-menu">' +
             '<h3>' + response.categories[i].name + '</h3>' + '</div>' +
@@ -50,6 +48,8 @@ makeGetReq("menu", {}, function (response) {
 
             });
             currentItem.attr("id", dishID);
+
+            currentButton.attr("total-amount", 0);
 
         });
     });

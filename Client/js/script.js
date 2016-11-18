@@ -1,6 +1,6 @@
 "use strict"
 
-function makeAjaxReq(path, method, data, success, error) {
+function makeAjaxReq(path, method, data, successCallback, errorCallback) {
     $.ajax({
         url: "http://localhost:3001/" + path,
         type: method,
@@ -12,12 +12,9 @@ function makeAjaxReq(path, method, data, success, error) {
         },
         success: function showGreenMark(response) {
             console.log("good");
-            success && success(response);
+            successCallback && successCallback(response);
         },
         error: function showRedMark(xhr, status, err) {
-
-
-            console.log("Error " + xhr.responseText);
             var message;
             var statusErrorMap = {
                 '400': "Bad request: ",
@@ -35,7 +32,7 @@ function makeAjaxReq(path, method, data, success, error) {
                 message = "Unknown Error " + err;
             }
             $(".err-panel").html(message);
-            error && error();
+            errorCallback && errorCallback();
         }
     });
 };
