@@ -17,6 +17,7 @@ $(".signin").click(function () {
         console.log("Data Loaded: " + data)
         $(".login").hide();
         $(".user-profile").show();
+        getCurrentUserOrders();
     }, function () {
 
         $(".err-panel").html("Your email or password is wrong");
@@ -30,5 +31,7 @@ $(".logout").click(function () {
     $(".user-profile").hide();
     makeGetReq("logout/", {}, function (data) {
         console.log("Log out")
+        $(".order-product").html("make order").attr("total-amount", 0);
+
     });
 });

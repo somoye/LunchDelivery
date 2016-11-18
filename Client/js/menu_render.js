@@ -55,12 +55,13 @@ makeGetReq("menu", {}, function (response) {
     });
 });
 
-makeGetReq("users/me/orders", {}, function (response) {
-    $.each(response, function (i) {
-        var orderedDish = response[i].dishId;
-        console.log("ID" + response[i].amount);
-        $("#" + orderedDish + " .order-product").html("Ordered:" + response[i].amount);
-        $("#" + orderedDish + " .order-product").attr("total-amount", response[i].amount);
-    });
-
-})
+function getCurrentUserOrders() {
+    makeGetReq("users/me/orders", {}, function (response) {
+        $.each(response, function (i) {
+            var orderedDish = response[i].dishId;
+            console.log("ID" + response[i].amount);
+            $("#" + orderedDish + " .order-product").html("Ordered:" + response[i].amount);
+            $("#" + orderedDish + " .order-product").attr("total-amount", response[i].amount);
+        });
+    })
+}
