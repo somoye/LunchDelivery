@@ -6,7 +6,7 @@ makeGetReq("users/me", {}, function (response) {
     $(".login").show();
 });
 
-$(".signin").click(function () {
+function signinOnClick() {
     var email = $("#user_email").val();
     var password = $("#user_pwd").val();
 
@@ -24,7 +24,12 @@ $(".signin").click(function () {
 
     });
 
+};
+
+$(".signin").click(function () {
+    signinOnClick()
 });
+
 
 $(".logout").click(function () {
     $(".login").show();
@@ -34,4 +39,12 @@ $(".logout").click(function () {
         $(".order-product").html("make order").attr("total-amount", 0);
 
     });
+});
+
+$("#user_pwd").keypress(function (event) {
+    if (event.keyCode === 13) {
+        signinOnClick();
+    }
+    event.cancelBubble = true;
+    if (event.stopPropagation) event.stopPropagation();
 });
