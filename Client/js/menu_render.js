@@ -6,8 +6,6 @@ function orderItemClickHandler(dishID, currentButton) {
         console.log(totalAmont);
         currentButton.html('Ordered: ' + totalAmont);
         currentButton.attr("total-amount", totalAmont);
-    }, function () {
-        alert('Please log in');
     });
 };
 

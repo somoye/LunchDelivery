@@ -2,6 +2,7 @@
 makeGetReq("users/me", {}, function (response) {
     $(".user-profile").show();
     $(".login").hide();
+    getCurrentUserOrders();
 }, function () {
     $(".login").show();
 });

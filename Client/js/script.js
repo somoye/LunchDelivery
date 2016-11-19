@@ -31,7 +31,8 @@ function makeAjaxReq(path, method, data, successCallback, errorCallback) {
             } else {
                 message = "Unknown Error " + err;
             }
-            $(".err-panel").html(message);
+            $(".err-panel").html('<div class="loader"></div>');
+            $(".err-panel").html(message).fadeIn(400).delay(5000).fadeOut(400);
             errorCallback && errorCallback();
         }
     });
