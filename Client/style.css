@@ -13,6 +13,14 @@ body {
     padding: 0;
 }
 
+h3 {
+    text-transform: capitalize;
+}
+
+p {
+    margin: 0;
+}
+
 .clear {
     clear: both;
 }
@@ -217,4 +225,41 @@ body {
     padding: 13px 15px;
     float: left;
     color: red;
+}
+
+.counter {
+    display: none;
+    padding-bottom: 30px;
+}
+
+.counter .minus {
+    background: url(img/counter.png) 0 0;
+}
+
+.counter .minus:hover {
+    background-position: -1px -31px;
+}
+
+.counter .plus {
+    background: url(img/counter.png) -40px 0;
+}
+
+.counter .plus:hover {
+    background-position: -41px -31px;
+}
+
+.counter span {
+    float: left;
+    width: 23px;
+    height: 23px;
+}
+
+.counter .number_dishes {
+    float: left;
+    width: 34px;
+    border: none;
+    text-align: center;
+    padding: 0;
+    height: 23px;
+    font: 16px/24px cuprum;
 }

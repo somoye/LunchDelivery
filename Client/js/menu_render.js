@@ -1,11 +1,15 @@
-function orderItemClickHandler(dishID, currentButton) {
+function orderItemClickHandler(dishID, buttonPlus) {
     makePostReq("users/me/orders", {
         dishId: dishID
     }, function () {
-        var totalAmont = +currentButton.attr("total-amount") + 1;
+        var dishAmont = buttonPlus.parent().find(".number_dishes");
         console.log(totalAmont);
-        currentButton.html('Ordered: ' + totalAmont);
-        currentButton.attr("total-amount", totalAmont);
+
+        buttonPlus.parent().show();
+        buttonPlus.parent().find("p").hide();
+        var totalAmont = Number(dishAmont.attr("value")) + 1;
+        dishAmont.attr("value", totalAmont);
+
     });
 };
 
@@ -34,20 +38,24 @@ makeGetReq("menu", {}, function (response) {
                     '<div class="list-product-desc">' + '<p class="description">' + response.categories[i].dishes[j].description + '</p>' + '</div>' +
                     '<div class="list-product-price">' + '<span class="price">' + response.categories[i].dishes[j].price + '</span>' + '</div>' +
                     '<div class="clear" />' +
-                    '<span class="order-product">make order</span>').appendTo(list);
+                    '<div class="order-product"><p>make order<p>' + '<div class="counter">' +
+                    '<span class="minus"></span>' +
+                    '<input class="number_dishes" value="0">' +
+                    '<span class="plus"></span>' +
+                    '</div>' + '</div>').appendTo(list);
 
             var dishID = response.categories[i].dishes[j].id;
             var currentButton = currentItem.find(".order-product");
-            currentButton.click(function () {
+            var buttonPlus = currentButton.find(".plus");
+            buttonPlus.click(function () {
 
                 // currentButton.html('<div class="loader"></div>');
-                orderItemClickHandler(dishID, currentButton);
+                orderItemClickHandler(dishID, buttonPlus);
 
 
             });
             currentItem.attr("id", dishID);
-
-            currentButton.attr("total-amount", 0);
+            currentButton.find(".number_dishes").attr("value", 0)
 
         });
     });
@@ -57,9 +65,11 @@ function getCurrentUserOrders() {
     makeGetReq("users/me/orders", {}, function (response) {
         $.each(response, function (i) {
             var orderedDish = response[i].dishId;
-            console.log("ID" + response[i].amount);
-            $("#" + orderedDish + " .order-product").html("Ordered:" + response[i].amount);
-            $("#" + orderedDish + " .order-product").attr("total-amount", response[i].amount);
+            console.log("hi");
+            $("#" + orderedDish + " .order-product").find(".number_dishes").attr("value", response[i].amount)
+            $("#" + orderedDish + " .order-product").find(".counter").show();
+            $("#" + orderedDish + " .order-product").find("p").hide();
+            $("#" + orderedDish + " .order-product").css("background", "#fff")
         });
     })
 }

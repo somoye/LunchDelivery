@@ -37,7 +37,11 @@ $(".logout").click(function () {
     $(".user-profile").hide();
     makeGetReq("logout/", {}, function (data) {
         console.log("Log out")
-        $(".order-product").html("make order").attr("total-amount", 0);
+
+        $(".order-product").find(".number_dishes").attr("value", 0)
+        $(".order-product").find(".counter").hide();
+        $(".order-product").find("p").show();
+        $(".order-product").css("background", "#ffb606")
 
     });
 });
