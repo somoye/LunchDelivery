@@ -1,13 +1,42 @@
-function orderItemClickHandler(dishID, buttonPlus) {
+function makeOrder(dishID, makeOrderButton) {
+    makePostReq("users/me/orders", {
+        dishId: dishID
+    }, function () {
+        var dishAmont = makeOrderButton.parent().find(".number_dishes");
+
+        makeOrderButton.parent().find(".counter").show();//show counter
+        makeOrderButton.hide();
+        makeOrderButton.parent().css("background","#fff");
+        var totalAmont = Number(dishAmont.val()) + 1;
+        dishAmont.val(totalAmont);
+
+    });
+};
+
+function addDishToOrder(dishID, buttonPlus) {
     makePostReq("users/me/orders", {
         dishId: dishID
     }, function () {
         var dishAmont = buttonPlus.parent().find(".number_dishes");
+
+      //  buttonPlus.parent().show();//show counter
+        //buttonPlus.parent().find("p").hide();
+        var totalAmont = Number(dishAmont.attr("value")) + 1;
+        dishAmont.attr("value", totalAmont);
+
+    });
+};
+
+function deleteDishFromOrder(dishID, buttonMinus) {
+    makeDeleteReq("users/me/orders", {
+        dishId: dishID
+    }, function () {
+        var dishAmont = buttonMinus.parent().find(".number_dishes");
         console.log(totalAmont);
 
-        buttonPlus.parent().show();
-        buttonPlus.parent().find("p").hide();
-        var totalAmont = Number(dishAmont.attr("value")) + 1;
+        //buttonMinus.parent().show();
+       // buttonMinus.parent().find("p").hide();
+        var totalAmont = Number(dishAmont.attr("value")) - 1;
         dishAmont.attr("value", totalAmont);
 
     });
@@ -46,14 +75,25 @@ makeGetReq("menu", {}, function (response) {
 
             var dishID = response.categories[i].dishes[j].id;
             var currentButton = currentItem.find(".order-product");
+            var makeOrderButton = currentButton.find("p");
             var buttonPlus = currentButton.find(".plus");
+            var buttonMinus = currentButton.find(".minus");
+
+makeOrderButton.click(function(){
+    makeOrder(dishID, makeOrderButton);
+})
+
+
             buttonPlus.click(function () {
 
                 // currentButton.html('<div class="loader"></div>');
-                orderItemClickHandler(dishID, buttonPlus);
+                addDishToOrder(dishID, buttonPlus);
 
 
             });
+            buttonMinus.click(function() {
+                deleteDishFromOrder(dishID, buttonMinus);
+            })
             currentItem.attr("id", dishID);
             currentButton.find(".number_dishes").attr("value", 0)
 

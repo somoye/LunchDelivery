@@ -47,3 +47,7 @@ function makePostReq(path, data, success, error) {
     makeAjaxReq(path, "POST", dataToString, success, error);
 
 };
+
+function makeDeleteReq(path, data, success, error) {
+    makeAjaxReq(path, "DELETE", data, success, error);
+}
