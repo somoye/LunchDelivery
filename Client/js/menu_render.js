@@ -47,7 +47,6 @@ var panelGrid = $('.active-menu');
 
 makeGetReq("menu", {}, function (response) {
 
-
     $.each(response.categories, function (i) {
         var panelGridCell = $('<div class="panel-grid-cell">').html(
             '<div class="list-menu">' +
@@ -82,21 +81,15 @@ makeGetReq("menu", {}, function (response) {
 makeOrderButton.click(function(){
     makeOrder(dishID, makeOrderButton);
 })
-
-
             buttonPlus.click(function () {
-
                 // currentButton.html('<div class="loader"></div>');
                 addDishToOrder(dishID, buttonPlus);
-
-
             });
             buttonMinus.click(function() {
                 deleteDishFromOrder(dishID, buttonMinus);
             })
             currentItem.attr("id", dishID);
             currentButton.find(".number_dishes").attr("value", 0)
-
         });
     });
 });
