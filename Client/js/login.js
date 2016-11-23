@@ -1,13 +1,14 @@
 "use strict"
-function getUserData() { 
+
+function getUserData() {
     makeGetReq("users/me", {}, function (response) {
-    $(".user-profile").show();
-    $(".login").hide();
-    getCurrentUserOrders();
-    $(".user-name").html("Hi " + response.name);
-}, function () {
-    $(".login").show();
-});
+        $(".user-profile").show();
+        $(".login").hide();
+        getCurrentUserOrders();
+        $(".user-name").html("Hi " + response.name + "!");
+    }, function () {
+        $(".login").show();
+    });
 };
 
 getUserData();
@@ -17,15 +18,15 @@ function signinOnClick() {
     var password = $("#user_pwd").val();
 
     makePostReq("auth/", {
-        username: email,
-        password: password
-    }, 
-    getUserData, 
-    function () {
+            username: email,
+            password: password
+        },
+        getUserData,
+        function () {
 
-        $(".err-panel").html("Your email or password is wrong");
+            $(".err-panel").html("Your email or password is wrong");
 
-    });
+        });
 
 };
 
@@ -55,4 +56,3 @@ $("#user_pwd").keypress(function (event) {
     event.cancelBubble = true;
     if (event.stopPropagation) event.stopPropagation();
 });
-

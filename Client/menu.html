@@ -25,7 +25,7 @@
     <script src="js/script.js" defer></script>
     <script src="js/login.js" defer></script>
     <script src="js/menu_render.js" defer></script>
-
+    <script src="js/cart.js" defer></script>
 </head>
 
 <body>
@@ -67,10 +67,11 @@
                     </div>
                     <button class="btn btn-success signin">Sign in</button>
                 </div>
-                <div class="user-profile">
-                    <a class="navbar-brand" href="#">Profile Page</h1>
-                    <a href="#" class="btn btn-warning logout">Logout</a>
+                <div class="user-profile navbar-right">
                     <span class="user-name"></span>
+                    <a class="navbar-brand" href="#">Profile Page</a>
+                    <a href="#" class="btn btn-warning logout">Logout</a>
+
                 </div>
             </div>
             <!--/.navbar-collapse -->
@@ -88,7 +89,22 @@
         </div>
     </div>
 -->
+    <!-- Trigger/Open The Modal -->
+
+
     <div class="container  site-content">
+        <button id="myBtn">Confirm your order</button>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">x</span>
+                <p>Some text in the Modal..</p>
+            </div>
+
+        </div>
         <div class="row">
             <main class="site-main col-sm-12 full-width">
                 <div class="panel-grid">
@@ -110,6 +126,8 @@
         </footer>
     </div>
     <!-- /.container -->
+
+
 
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
