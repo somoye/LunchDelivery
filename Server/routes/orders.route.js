@@ -14,4 +14,10 @@ router.post('/', function (req, res, next) {
 		.catch(next);
 });
 
+router.delete('/', function (req, res, next) {
+	orderProvider.delete(req.params.userId || req.body.userId, req.body.dishId)
+		.then(result => res.json(result))
+		.catch(next);
+});
+
 module.exports = router;

@@ -49,5 +49,6 @@ function makePostReq(path, data, success, error) {
 };
 
 function makeDeleteReq(path, data, success, error) {
-    makeAjaxReq(path, "DELETE", data, success, error);
+    var dataToString = JSON.stringify(data);
+    makeAjaxReq(path, "DELETE", dataToString, success, error);
 }
