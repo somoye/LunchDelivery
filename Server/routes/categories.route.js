@@ -20,6 +20,24 @@ router.post('/', function (req, res, next) {
     .catch(next);
 });
 
+router.put('/:categoryId', function (req, res, next) {
+  categoryProvider.update(Object.assign(req.body, {id: req.params.categoryId}))
+    .then(result => res.json(result))
+    .catch(next);
+});
+
+router.get('/:categoryId', function (req, res, next) {
+  categoryProvider.getById(req.params.categoryId)
+    .then(result => res.json(result))
+    .catch(next);
+});
+
+router.delete('/:categoryId', function (req, res, next) {
+  categoryProvider.delete(req.params.categoryId)
+    .then(result => res.json(result))
+    .catch(next);
+});
+
 router.use('/:categoryId/images', require('./images.route'));
 
 module.exports = router;

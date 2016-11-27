@@ -5,8 +5,8 @@ var multer = require('multer')
 var upload = multer({ limits: { fileSize: 5000000 } });
 
 router.get('/:imageId', function (req, res, next) {
-  if (req.params.imageId == 'new')
-    res.type("jpeg") && res.end(new Buffer(req.session['image'].buffer));
+  if (req.session["image" + req.params.imageContext])
+    res.type("jpeg") && res.end(new Buffer(req.session["image" + req.params.imageContext].buffer));
   else
     imageProvider.get(req.params.imageId, req.params.imageContext)
       .then(result => res.type("jpeg") && res.send(result.content))
@@ -14,8 +14,8 @@ router.get('/:imageId', function (req, res, next) {
 });
 
 router.post('/', upload.single('image'), function (req, res, next) {
-    req.session['image'] = req.file;
-    res.json({});
+    req.session['image' + req.params.imageContext] = req.file;
+    res.json({ name: 'image' + req.params.imageContext});
 });
 
 module.exports = router;
