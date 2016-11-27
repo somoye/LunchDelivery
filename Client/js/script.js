@@ -20,8 +20,8 @@ function makeAjaxReq(path, method, data, successCallback, errorCallback) {
                 '400': "Bad request: ",
                 '401': "Unauthorized access",
                 '403': "Unauthorized access",
-                '404': "Not Found: ",
-                '500': "Server error: "
+                '404': "Not Found ",
+                '500': "Server error "
             };
             if (xhr.status) {
                 message = statusErrorMap[xhr.status];
