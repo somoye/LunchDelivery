@@ -112,5 +112,10 @@ function getCurrentUserOrders() {
         $(".total-order").val(totalOrderAmount);
         $(".total-cost").val(totalOrderCost);
 
+        //        $.each(response, function (i) {
+        //            $('<tr>').html('<td>' + response[i].dish.name + '</td>' + '<td>' + response[i].dish.price + '</td>' + '<td>' + response[i].amount + '</td>' + '<td>' + response[i].dish.price * response[i].amount + '</td>').appendTo($("#tbody"))
+        //
+        //        })
+
     })
 }
