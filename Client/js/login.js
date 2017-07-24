@@ -1,7 +1,6 @@
 "use strict"
 
 function getUserData() {
-    $("#myBtn").show();
     makeGetReq("users/me", {}, function (response) {
         $(".user-profile").show();
         $(".login").hide();
@@ -32,7 +31,6 @@ function signinOnClick() {
 };
 
 $(".signin").click(function () {
-
     signinOnClick()
 });
 
@@ -40,12 +38,14 @@ $(".signin").click(function () {
 $(".logout").click(function () {
     $(".login").show();
     $(".user-profile").hide();
-    $("#myBtn").hide();
     makeGetReq("logout/", {}, function (data) {
-        $(".order-product").find(".number_dishes").val(0);
+        console.log("Log out")
+
+        $(".order-product").find(".number_dishes").attr("value", 0)
         $(".order-product").find(".counter").hide();
         $(".order-product").find("p").show();
-        $(".order-product").css("background", "#ffb606");
+        $(".order-product").css("background", "#ffb606")
+
     });
 });
 

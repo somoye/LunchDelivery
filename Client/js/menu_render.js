@@ -69,7 +69,7 @@ makeGetReq("menu", {}, function (response) {
                     '<div class="clear" />' +
                     '<div class="order-product"><p>make order<p>' + '<div class="counter">' +
                     '<span class="minus"></span>' +
-                    '<input class="number_dishes" readonly>' +
+                    '<input class="number_dishes" value="0">' +
                     '<span class="plus"></span>' +
                     '</div>' + '</div>').appendTo(list);
 
@@ -95,13 +95,11 @@ makeGetReq("menu", {}, function (response) {
     });
 });
 
-var totalOrderAmount;
-var totalOrderCost;
+var totalOrderAmount = 0;
+var totalOrderCost = 0;
 
 function getCurrentUserOrders() {
     makeGetReq("users/me/orders", {}, function (response) {
-        totalOrderAmount = 0;
-        totalOrderCost = 0;
         $.each(response, function (i) {
             var orderedDish = response[i].dishId;
             $("#" + orderedDish + " .order-product").find(".number_dishes").val(response[i].amount)
@@ -113,5 +111,11 @@ function getCurrentUserOrders() {
         });
         $(".total-order").val(totalOrderAmount);
         $(".total-cost").val(totalOrderCost);
+
+        //        $.each(response, function (i) {
+        //            $('<tr>').html('<td>' + response[i].dish.name + '</td>' + '<td>' + response[i].dish.price + '</td>' + '<td>' + response[i].amount + '</td>' + '<td>' + response[i].dish.price * response[i].amount + '</td>').appendTo($("#tbody"))
+        //
+        //        })
+
     })
 }
