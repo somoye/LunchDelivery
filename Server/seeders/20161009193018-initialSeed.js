@@ -9,21 +9,22 @@ module.exports = {
 					.categories.map(categoryToSave =>
 						db.Category.create(categoryToSave)
 							.then(category =>
-								Promise.all(categoryToSave.dishes.map(dish => db.Dish.create(dish)))
-									.then(dishes => category.setDishes(dishes))
+								Promise.all(
+									categoryToSave.dishes.map(
+										dish => category.createDish(dish)))
 							)))
 					.then(() => Promise.all(
 						require('./seeds/user.seed.js')
 							.users.map(user => db.User.create(user))))
 					.then(() => db.Order.create({
 						date: new Date(new Date().setHours(0, 0, 0, 0)),
-						UserId: 1,
+						userId: 1,
 						dishId: 1,
 						amount: 1
 					}))
 					.then(() => db.Order.create({
 						date: new Date(new Date().setHours(0, 0, 0, 0)),
-						UserId: 1,
+						userId: 1,
 						dishId: 2,
 						amount: 2
 					})));

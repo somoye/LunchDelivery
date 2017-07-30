@@ -12,7 +12,7 @@ module.exports = {
 
 	getById: function (categoryId) {
 		return db.Category.findById(categoryId).then(category =>
-			category || Promise.reject(new errors.NotFound("Order is not found")));
+			category || Promise.reject(new errors.NotFound("Category is not found")));
 	},
 
 	add: function (category) {
@@ -22,7 +22,7 @@ module.exports = {
 	update: function (propsToUpdate) {
 		return db.Category.findById(propsToUpdate.id).then(category => category
 			? Object.assign(category).update(propsToUpdate)
-			: Promise.reject(errors.NotFound("Category is not found"))
+			: Promise.reject(new errors.NotFound("Category is not found"))
 		);
 	},
 
