@@ -1,12 +1,11 @@
 "use strict"
 
 function getUserData() {
-    $("#myBtn").css({"display": "none"});
     
     makeGetReq("users/me", {}, function (response) {
         $(".user-profile").show();
         $(".login").hide();
-        $("#myBtn").show();
+        $("#myBtn").css({"display": "inline-block"});
         getCurrentUserOrders();
         $(".user-name").html("Hi " + response.name + "!");
     }, function () {
