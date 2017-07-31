@@ -21,13 +21,32 @@ content-type: application/json
     "name":"test1"
 }
 ###
+POST http://localhost:3001/categories/4/dishes
+content-type: application/json
+
+{
+    "name": "Салат",
+    "description": "Test dish description",
+    "price": 13
+}
+###
+PUT http://localhost:3001/categories/4/dishes/11
+content-type: application/json
+
+{
+    "name":"Test dish"
+}
+###
+GET http://localhost:3001/categories/4/dishes
+###
+DELETE http://localhost:3001/categories/4/dishes/11
+###
 POST http://localhost:3001/categories/4/images/
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary393K9l94yUYSfz23
 
 < ./image.body
 ###
-GET http://localhost:3001/categories/4/images/new
+GET http://localhost:3001/categories/4/images/default
 ###
-
 DELETE http://localhost:3001/categories/4
 ###

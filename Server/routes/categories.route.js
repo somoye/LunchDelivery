@@ -39,5 +39,6 @@ router.delete('/:categoryId', function (req, res, next) {
 });
 
 router.use('/:categoryId/images', require('./images.route'));
+router.use('/:categoryId/dishes', require('./dishes.route'));
 
 module.exports = router;

@@ -12,10 +12,8 @@ module.exports = function (sequelize, DataTypes) {
 		classMethods: {
 			associate: (db) => {
 				db.Category.hasMany(db.Dish, {
-					as: 'dishes'
-				}),
-				db.Category.hasOne(db.Image, {
-					as: 'image'
+					as: 'dishes',
+					foreignKey: { name: 'categoryId', allowNull: false }
 				});
 			}
 		}
