@@ -3,6 +3,7 @@ POST http://localhost:3001/auth/
 content-type: application/json
 
 {"username":"ivan@dev-pro.net","password":"ivan"}
+
 ###
 GET http://localhost:3001/categories/4
 ###
