@@ -3,11 +3,18 @@
 function getUserData() {
     
     makeGetReq("users/me", {}, function (response) {
-        $(".user-profile").show();
+        console.log(response)
+
+        $(".user-name").html("Hi " + response.name + "!");
         $(".login").hide();
         $("#myBtn").css({"display": "inline-block"});
         getCurrentUserOrders();
-        $(".user-name").html("Hi " + response.name + "!");
+        
+        if(response.isAdmin) {
+            $(".admin-profile").show();
+        } else {
+            $(".user-profile").show();
+        }
     }, function () {
         $(".login").show();
     });
@@ -40,6 +47,7 @@ $(".signin").click(function () {
 $(".logout").click(function () {
     $(".login").show();
     $(".user-profile").hide();
+    $(".admin-profile").hide();
     $("#myBtn").hide();
     makeGetReq("logout/", {}, function (data) {
         console.log("Log out")

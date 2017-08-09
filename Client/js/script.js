@@ -11,7 +11,6 @@ function makeAjaxReq(path, method, data, successCallback, errorCallback) {
             withCredentials: true
         },
         success: function showGreenMark(response) {
-            console.log("good");
             successCallback && successCallback(response);
         },
         error: function showRedMark(xhr, status, err) {
