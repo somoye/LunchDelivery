@@ -17,19 +17,14 @@ function getCategorisList() {
 
 getCategorisList();
 
-function addCategory(id, name, url) {
+function addCategory(name) {
     makePostReq("categories/", {
-        "imageUrl": url, 
-        "id": id, 
         "name": name
     }, getCategorisList())
 }
 
 $(".add-category").click(function() {
-
-    var id = $('input[name=id]').val();
     var name = $('input:text[name=name]').val();
-    var url = $('input[name=img-url]').val();
 
-    addCategory(id, name, url);
+    addCategory(name);
 })
