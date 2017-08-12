@@ -8,6 +8,7 @@ function getUserData() {
         $("#myBtn").css({"display": "inline-block"});
         getCurrentUserOrders();
         $(".user-name").html("Hi " + response.name + "!");
+        $("#profile_name").val(response.name);
     }, function () {
         $(".login").show();
     });
@@ -18,7 +19,7 @@ getUserData();
 function signinOnClick() {
     var email = $("#user_email").val();
     var password = $("#user_pwd").val();
-
+    
     makePostReq("auth/", {
             username: email,
             password: password
