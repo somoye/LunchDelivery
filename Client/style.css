@@ -186,7 +186,8 @@ p {
 }
 
 .login,
-.user-profile {
+.user-profile,
+.admin-profile {
     display: none;
 }
 
