@@ -1,0 +1,8 @@
+GET  http://localhost:3001/users/
+content-type: application/json
+
+{
+    "id": 2
+    
+}
+###

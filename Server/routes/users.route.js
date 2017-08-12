@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const userProvider = require('../services/user.provider');
 
 router.param('userId',
 	function (req, res, next) {
