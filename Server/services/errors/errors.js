@@ -4,9 +4,6 @@ class NotFound extends Error {
         this.status = 404;
     }
 }
-module.exports = {
-    NotFound: NotFound
-}
 
 class BadRequest extends Error {
     constructor(message){
@@ -14,7 +11,8 @@ class BadRequest extends Error {
         this.status = 400;
     }
 }
-    module.exports = {
-        BadRequest: BadRequest
-    }
-    
+
+module.exports = {
+    BadRequest: BadRequest,
+    NotFound: NotFound
+}
