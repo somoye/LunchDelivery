@@ -394,12 +394,13 @@ p {
 }
 
 .profile-user form input {
+    display: block;
     width: 80%;
     margin: 0 0 0 10%;
     border: none;
-    font-size: 1.2em;
+    border-bottom: 1px solid #d0d0d0;
+    font-size: 1em;
     padding: 5px;
-    color: #222;
 }
 
 .profile-user form button {
@@ -414,19 +415,6 @@ p {
     letter-spacing: 1px;
 }
 
-#button_edit_profile:hover, #button_save_profile:hover, #button_cancel_profile:hover {
-    background: #ffb606;
-    color: #222;
-}
-
-#button_save_profile {
-    display: none;
-}
-
-#button_cancel_profile {
-    display: none;
-}
-
 .orders-history {
     width: 70%;
     margin-top: 100px;
@@ -435,14 +423,4 @@ p {
     box-shadow: 0 0 2px #999;
     margin-left: 29%;
     border-radius: 3px;
-}
-
-#profile_name {
-    text-align: center;
-    margin-bottom: 10px;
-    display: block;
-}
-
-#profile_password {
-    display: none;
 }

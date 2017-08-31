@@ -3,23 +3,19 @@
 function getUserData() {
     
     makeGetReq("users/me", {}, function (response) {
-        console.log(response)
+        console.log(response.name)
 
         $(".user-name").html("Hi " + response.name + "!");
+        $("input#profile_name").val(response.name);
         $(".login").hide();
         $("#myBtn").css({"display": "inline-block"});
         getCurrentUserOrders();
-
-        $(".user-name").html("Hi " + response.name + "!");
-        $("#profile_name").val(response.name);
-
         
         if(response.isAdmin) {
             $(".admin-profile").show();
         } else {
             $(".user-profile").show();
         }
- 
     }, function () {
         $(".login").show();
     });
@@ -30,7 +26,7 @@ getUserData();
 function signinOnClick() {
     var email = $("#user_email").val();
     var password = $("#user_pwd").val();
-    
+
     makePostReq("auth/", {
             username: email,
             password: password
