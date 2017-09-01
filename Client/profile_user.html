@@ -21,6 +21,9 @@
     <script>
         window.jQuery || document.write('<script src="node_modules/jquery/dist/jquery.min.js"><\/script>')
     </script>
+    <script src="js/script.js" defer></script>
+    <script src="js/login.js" defer></script>
+    <script src="js/menu_render.js" defer></script>
 </head>
 
 <body>
@@ -58,9 +61,8 @@
             <div class="profile-box">
                 <div class="profile-user">
                     <img alt="" src="img/default-user-image.png">
-                    <form method="post">
-                        <input type="text" name="" id="">
-                        <input type="text" name="" id="">
+                    <form>
+                        <input type="text" name="profile_name" id="profile_name" value="">
                         <button>Edit Profile</button>
                     </form>
                 </div>

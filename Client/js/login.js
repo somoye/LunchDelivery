@@ -3,9 +3,10 @@
 function getUserData() {
     
     makeGetReq("users/me", {}, function (response) {
-        console.log(response)
+        console.log(response.name)
 
         $(".user-name").html("Hi " + response.name + "!");
+        $("input#profile_name").val(response.name);
         $(".login").hide();
         $("#myBtn").css({"display": "inline-block"});
         getCurrentUserOrders();
