@@ -7,7 +7,7 @@ module.exports = {
 			date: new Date(new Date().setHours(0, 0, 0, 0))
 		};
 		if (userId)
-			whereClause.UserId = userId;
+			whereClause.userId = userId;
 
 		return db.Order.findAll({
 			where: whereClause,
