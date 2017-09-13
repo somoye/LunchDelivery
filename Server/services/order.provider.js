@@ -19,12 +19,12 @@ module.exports = {
 	add: function (userId, dishId) {
 		return db.Order.findOrCreate({
 			where: {
-				UserId: userId,
+				userId: userId,
 				dishId: dishId,
 				date: new Date(new Date().setHours(0, 0, 0, 0))
 			},
 			defaults: {
-				UserId: userId,
+				userId: userId,
 				dishId: dishId,
 				date: new Date(new Date().setHours(0, 0, 0, 0)),
 				amount: 1
@@ -37,7 +37,7 @@ module.exports = {
 	delete: function (userId, dishId) {
 		return db.Order.find({
 			where: {
-				UserId: userId,
+				userId: userId,
 				dishId: dishId,
 				date: new Date(new Date().setHours(0, 0, 0, 0))
 			}
