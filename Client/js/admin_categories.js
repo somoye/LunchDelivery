@@ -3,16 +3,17 @@ function getCategorisList() {
         var sortedList = response.sort(function(a,b) {return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)} );
         $('.categories-table tbody').html(null);
         $.each(sortedList, function(i) {
-            $('<tr>' + 
+            var tr = $('<tr>' + 
             '<td>' + sortedList[i].id + '</td>' +
             '<td>' + sortedList[i].name + '</td>' +
             '<td>' + sortedList[i].imageUrl + '</td>' +
             '<td>' + '<a href="#" class="btn btn-danger delete-category">Delete</a>' + '</td>' +
             '</tr>'
             ).appendTo('.categories-table tbody');
+        var a = tr.find('.delete-category');
 
             var categoryId = sortedList[i].id;
-            $(".delete-category").click(function() {
+            a.click(function() {
                 deleteCategory(categoryId) 
             })
         })
