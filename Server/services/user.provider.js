@@ -4,10 +4,7 @@ const errors = require('./errors/errors');
 module.exports = {
 	get: function () {
 		return db.User.findAll({
-			include: [{
-				model: db.User, as: 'users'
-			}]
-		})
+					})
 	},
 
 	getById: function (userId) {
@@ -26,9 +23,9 @@ module.exports = {
 		);
 	},
 
-	delete: function (id) {
+	delete: function (Id) {
 		return db.User.destroy({
-			where: { id: id }
+			where: {id: id }
 		});
 	}
 }

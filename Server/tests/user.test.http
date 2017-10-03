@@ -1,6 +1,7 @@
 GET  http://localhost:3001/users/
 content-type: application/json
 
+{"id": "1"}
 
 ###
 
@@ -8,6 +9,15 @@ POST http://localhost:3001/users/
 content-type: application/json
 
 {
-    "id": 4,
-    "name":"test"
-}
+"lastName":"testing",
+"email": "test@gmail.com",
+"name":"tested" }
+
+###
+
+
+DELETE http://localhost:3001/users/
+content-type: application/json
+
+{
+"id":5 }
