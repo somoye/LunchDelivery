@@ -1,8 +1,6 @@
 GET  http://localhost:3001/users/
 content-type: application/json
 
-{"id": "1"}
-
 ###
 
 POST http://localhost:3001/users/

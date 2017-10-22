@@ -3,8 +3,7 @@ const errors = require('./errors/errors');
 
 module.exports = {
 	get: function () {
-		return db.User.findAll({
-					})
+		return db.User.findAll({})
 	},
 
 	getById: function (userId) {
@@ -23,7 +22,7 @@ module.exports = {
 		);
 	},
 
-	delete: function (Id) {
+	delete: function (id) {
 		return db.User.destroy({
 			where: {id: id }
 		});
