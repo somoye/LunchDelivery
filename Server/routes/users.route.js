@@ -10,7 +10,9 @@ function (req, res, next) {
 
 /* GET user info. */
 router.get('/:userId', function (req, res, next) {
-res.json(req.user);
+	userProvider.getById(req.params.userId)
+	.then(result => res.json(result))
+	.catch(next);
 });
 
 router.use('/:userId/orders', require('./orders.route'));
@@ -18,9 +20,9 @@ router.use('/:userId/orders', require('./orders.route'));
 module.exports = router;
 
 router.get('/', function (req, res, next) {
-	userProvider.get(req.params.userId)
-	  .then(result => res.json(result))
-	  .catch(next);
+	userProvider.get()
+	.then(result => res.json(result))
+	.catch(next);
   });
   
   router.post('/', function (req, res, next) {
@@ -29,10 +31,10 @@ router.get('/', function (req, res, next) {
 	  .catch(next);
   });
   
-  router.put('/:dishId', function (req, res, next) {
+  router.put('/:userId', function (req, res, next) {
 	userProvider.update(
 	  Object.assign(req.body, {
-		id: req.params.dishId,
+		id: req.params.userId,
 		userId: req.params.userId || req.body.userId
 	  })
 	)
@@ -40,8 +42,8 @@ router.get('/', function (req, res, next) {
 	  .catch(next);
   });
    
-  router.delete('/:dishId', function (req, res, next) {
-	userProvider.delete(req.params.dishId)
+  router.delete('/:userId', function (req, res, next) {
+	userProvider.delete(req.params.userId)
 	  .then(result => res.json(result))
 	  .catch(next);
   });

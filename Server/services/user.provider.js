@@ -3,7 +3,8 @@ const errors = require('./errors/errors');
 
 module.exports = {
 	get: function () {
-		return db.User.findAll({})
+		return db.User.findAll({			
+		})
 	},
 
 	getById: function (userId) {
@@ -12,7 +13,12 @@ module.exports = {
 	},
 
 	add: function (user) {
-		return db.User.create(user);
+		return db.User.create(user).catch(user =>
+			Promise.reject(new errors.BadRequest("Validation error (Please check you input)")));
+			 
+			/*console.log(err instanceof db.Sequelize.ValidationError));*/
+
+		
 	},
 
 	update: function (propsToUpdate) {

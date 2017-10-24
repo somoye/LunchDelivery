@@ -1,6 +1,8 @@
 GET  http://localhost:3001/users/
 content-type: application/json
 
+
+
 ###
 
 POST http://localhost:3001/users/
@@ -14,8 +16,13 @@ content-type: application/json
 ###
 
 
-DELETE http://localhost:3001/users/
+DELETE http://localhost:3001/users/7
 content-type: application/json
 
-{
-"id":5 }
+###
+
+
+PUT http://localhost:3001/users/9
+content-type: application/json
+
+{"name": "testing"}
