@@ -10,19 +10,19 @@ content-type: application/json
 
 {
 "lastName":"testing",
-"email": "test@gmail.com",
+"email": "testing@gmail.com",
 "name":"tested" }
 
 ###
 
 
-DELETE http://localhost:3001/users/7
+DELETE http://localhost:3001/users/28
 content-type: application/json
 
 ###
 
 
-PUT http://localhost:3001/users/9
+PUT http://localhost:3001/users/29
 content-type: application/json
 
-{"name": "testing"}
+{"name": "tes1tings"}

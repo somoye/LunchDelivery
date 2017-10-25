@@ -14,20 +14,19 @@ module.exports = {
 
 	add: function (user) {
 		return db.User.create(user).catch(user =>
-			Promise.reject(new errors.BadRequest("Validation error (Please check you input)")));
-			 
-			/*console.log(err instanceof db.Sequelize.ValidationError));*/
-
-		
+			Promise.reject(new errors.BadRequest("Validation error (Please check you input)"))
+		);
+			
+					
 	},
 
 	update: function (propsToUpdate) {
 		return db.User.findById(propsToUpdate.id).then(user => user
 			? Object.assign(user).update(propsToUpdate)
-			: Promise.reject(new errors.NotFound("User is not found"))
-		);
+			: Promise.reject(new errors.NotFound("User is not found")));
+		
 	},
-
+	
 	delete: function (id) {
 		return db.User.destroy({
 			where: {id: id }
