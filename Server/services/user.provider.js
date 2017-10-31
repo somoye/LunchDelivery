@@ -13,9 +13,13 @@ module.exports = {
 	},
 
 	add: function (user) {
-		return db.User.create(user).catch(err =>
-			Promise.reject(new errors.BadRequest("Validation error (Please check your input)"))
-		);
+		return db.User.create(user).catch(err => err instanceof db.Sequelize.ValidationError
+			?(err instanceof db.Sequelize.UniqueConstraintError 
+				? Promise.reject(new errors.BadRequest("UniqueConstraintError"))
+				: Promise.reject(new errors.BadRequest("Validation error (Please check your input)")))
+			: Promise.reject(err));
+			//Promise.reject(new errors.BadRequest("Validation error (Please check your input)"))
+		//);
 			
 					
 	},
