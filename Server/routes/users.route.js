@@ -17,8 +17,6 @@ router.get('/:userId', function (req, res, next) {
 
 router.use('/:userId/orders', require('./orders.route'));
 
-module.exports = router;
-
 router.get('/', function (req, res, next) {
 	userProvider.get()
 	.then(result => res.json(result))
@@ -48,7 +46,7 @@ router.get('/', function (req, res, next) {
 	  .catch(next);
   });
   
-
+	module.exports = router;
 
 
 

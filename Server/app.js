@@ -39,7 +39,7 @@ auth(app);
 app.use('/', routes);
 app.use('/', menu);
 app.use('/categories', categories);
-/*app.use(function (req, res, next) {
+app.use(function (req, res, next) {
 	if (req.isAuthenticated())
 		next();
 	else {
@@ -47,7 +47,7 @@ app.use('/categories', categories);
 		err.status = 401;
 		next(err);
 	}
-});*/
+});
 
 app.use('/users', users);
 app.use('/orders', orders);

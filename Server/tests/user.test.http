@@ -22,7 +22,7 @@ content-type: application/json
 ###
 
 
-PUT http://localhost:3001/users/29
+PUT http://localhost:3001/users/3
 content-type: application/json
 
-{"name": "tes1tings"}
+{"email": "admin@gmail.com"}
