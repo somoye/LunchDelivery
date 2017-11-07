@@ -11,15 +11,15 @@ POST http://localhost:3001/categories/
 content-type: application/json
 
 {
-    "id": 4,
-    "name":"test"
+    "id": 5,
+    "name":"tested"
 }
 ###
-PUT http://localhost:3001/categories/4
+PUT http://localhost:3001/categories/5
 content-type: application/json
 
 {
-    "name":"test1"
+    "name":"test"
 }
 ###
 POST http://localhost:3001/categories/4/dishes
