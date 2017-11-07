@@ -15,6 +15,7 @@ passport.use(new Strategy(
                     return cb(null, false);
                 }
                 return cb(null, user);
+                
             }).catch(cb);
     }));
 

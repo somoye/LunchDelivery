@@ -15,7 +15,7 @@ module.exports = function (sequelize, DataTypes) {
 			 unique : true},
 			
 		isAdmin: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
-		userPasswd: {type: DataTypes.STRING, allowNull: true, len: [2,50]} 
+		userPasswd: {type: DataTypes.STRING, allowNull: false, len: [2,50]} 
 		},	{
 		freezeTableName: true,
 		classMethods: {
