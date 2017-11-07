@@ -16,12 +16,20 @@ module.exports = {
 	},
 
 	add: function (category) {
-		return db.Category.create(category);
+		return db.Category.create(category).catch(err => err instanceof db.Sequelize.ValidationError
+			? (err instanceof db.Sequelize.UniqueConstraintError 
+				? Promise.reject(new errors.BadRequest("UniqueConstraintError (Category already exist)"))
+				: Promise.reject(new errors.BadRequest("Validation error (Category name must contain only a-z and A-Z)")))
+			: Promise.reject(err));
 	},
 
 	update: function (propsToUpdate) {
 		return db.Category.findById(propsToUpdate.id).then(category => category
-			? Object.assign(category).update(propsToUpdate)
+			? Object.assign(category).update(propsToUpdate).catch(err => err instanceof db.Sequelize.ValidationError
+				? (err instanceof db.Sequelize.UniqueConstraintError 
+					? Promise.reject(new errors.BadRequest("UniqueConstraintError (Category already exist)"))
+					: Promise.reject(new errors.BadRequest("Validation error (Category name must contain only a-z and A-Z)")))
+				: Promise.reject(err))				
 			: Promise.reject(new errors.NotFound("Category is not found"))
 		);
 	},

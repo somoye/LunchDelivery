@@ -1,6 +1,11 @@
 module.exports = function (sequelize, DataTypes) {
 	const model = sequelize.define('Category', {
-		name: DataTypes.STRING,
+		name: {
+			type: DataTypes.STRING,
+			allowNull: false,
+			validate: { min: 2, max:20, is: ["^[a-z]+$",'i'] },
+			unique : true},
+
 		imageUrl: {
 			type: DataTypes.VIRTUAL,
 			get: function(){
