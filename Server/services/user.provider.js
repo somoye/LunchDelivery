@@ -13,9 +13,12 @@ module.exports = {
 	},
 
 	add: function (user) {
-		return db.User.create(user).catch(err =>
-			Promise.reject(new errors.BadRequest("Validation error (Please check your input)"))
-		);
+		return db.User.create(user).catch(err => err instanceof db.Sequelize.ValidationError
+			?(err instanceof db.Sequelize.UniqueConstraintError 
+				? Promise.reject(new errors.BadRequest("UniqueConstraintError (Email already exist)"))
+				: Promise.reject(new errors.BadRequest("Validation error (FirstName and LastName must contain only a-z and A-Z)")))
+			: Promise.reject(err));
+			
 			
 					
 	},
@@ -23,11 +26,9 @@ module.exports = {
 	update: function (propsToUpdate) {
 		return db.User.findById(propsToUpdate.id).then(user => user
 			? Object.assign(user).update(propsToUpdate).catch(err => err instanceof db.Sequelize.ValidationError
-				/*проверить на ерор */
-				/*? Promise.reject(new errors.BadRequest("Validation error (Please check your input)"))*/
 				? (err instanceof db.Sequelize.UniqueConstraintError 
-					? Promise.reject(new errors.BadRequest("UniqueConstraintError)"))
-					: Promise.reject(new errors.BadRequest("Validation error (Please check your input)")))
+					? Promise.reject(new errors.BadRequest("UniqueConstraintError (Email already exist)"))
+					: Promise.reject(new errors.BadRequest("Validation error (FirstName and LastName must contain only a-z and A-Z)")))
 				: Promise.reject(err))				
 			: Promise.reject(new errors.NotFound("User is not found")));
 		
