@@ -6,14 +6,12 @@ passport.use(new Strategy(
     function (username, password, cb) {
         db.User.find({
                 where: {
-                    email: username
+                    email: username,
+                    userPasswd: password
                 }
             })
             .then(user => {
                 if (!user) {
-                    return cb(null, false);
-                }
-                if (user.name.toLowerCase() != password.toLowerCase()) {
                     return cb(null, false);
                 }
                 return cb(null, user);

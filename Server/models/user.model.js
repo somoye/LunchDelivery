@@ -14,7 +14,8 @@ module.exports = function (sequelize, DataTypes) {
 			 validate: {len: [2,50], isEmail: true},
 			 unique : true},
 			
-		isAdmin: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false }
+		isAdmin: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
+		userPasswd: {type: DataTypes.STRING, allowNull: true, len: [2,50]} 
 		},	{
 		freezeTableName: true,
 		classMethods: {
