@@ -3,13 +3,15 @@ module.exports = {
 		{
 			name: "Ivan",
 			lastName: "Dorn",
-			email: "ivan@dev-pro.net"
+			email: "ivan@dev-pro.net",
+			userPasswd: "1234567"
 		},
 		{
 			name: "admin",
 			lastName: "admin",
 			email: "admin@gmail.com",
-			isAdmin: true
+			isAdmin: true,
+			userPasswd: "23Qwerty",
 		}
 	]
 };
