@@ -16,8 +16,17 @@ module.exports = function (sequelize, DataTypes) {
 			
 		isAdmin: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
 		userPasswd: {type: DataTypes.STRING, allowNull: false, len: [2,50]} 
-		},	{
-		freezeTableName: true,
+		},	
+		
+		{instanceMethods: {
+			  toJSON: function () {
+				var values = Object.assign({},
+					 this.get());		  
+				delete values.userPasswd;
+				return values;
+			  }}},
+			
+		{freezeTableName: true,
 		classMethods: {
 			associate: function (db) {
 				db.User.hasMany(db.Order, {
@@ -32,3 +41,12 @@ module.exports = function (sequelize, DataTypes) {
 	};
 
 
+	/*sequelize.define('user', attributes, {
+		instanceMethods: {
+		  toJSON: function () {
+			var values = Object.assign({}, this.get());
+	  
+			delete values.password;
+			return values;
+		  }
+		}*/
